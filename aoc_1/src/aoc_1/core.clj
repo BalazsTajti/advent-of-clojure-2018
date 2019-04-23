@@ -10,13 +10,13 @@
 (defn find-first-duplicate-frequency
   [input]
   (loop [numbers input
-         frequencies [0]
+         frequencies (set [0])
          sum 0]
     (if (empty? numbers)
       (recur input frequencies sum)
       (let [[number & remaining] numbers]
         (let [newSum (+ sum number)]
-          (if (.contains frequencies newSum)
+          (if (contains? frequencies newSum)
             (println "First duplicate frequency: " newSum)
             (recur remaining (conj frequencies newSum) newSum)))))))
 
